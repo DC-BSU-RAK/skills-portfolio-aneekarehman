@@ -367,7 +367,7 @@ def updateastudentid():
                             "Student not found")
         return
     # If the student code doesnt match a error box is shown to warn the user
-    field = simpledialog.askstring("Update", "What Would you like to update? (name/mark1/mark2/mark3/exam)")
+    field = simpledialog.askstring("Update", "What Would you like to update? (name / mark 1 / mark 2 / mark 3 / exam mark)")
     if field == None:
         return
     # If the code does match then it asks the user what they would like to update from the 
