@@ -246,6 +246,45 @@ def showlowestmark():
     messagebox.showinfo("Lowest Mark", information)
 
 
+
+
+
+
+# This is a function student information off of the program
+def deleteastudentid():
+    students = studentinfo()
+    if len(students) == 0:
+        messagebox.showinfo("Error",
+                            "No students found")
+        return
+    # This asks the user for the code of the student they'd like to delete of the system
+    code = simpledialog.askstring("Delete",
+                                  "Enter student code to delete:")
+
+    if code == None:
+        return
+    
+    new_list = []
+    found = False
+    
+    for s in students:
+        if s["code"] != code:
+            # If the code given does not match its still kept in the list
+            
+            new_list.append(s)
+        else:
+            found = True
+    
+    if not found:
+        messagebox.showinfo("Error",
+                            "Student not found")
+        return
+    # If it is then the student information is deleted and a message box displays that
+    studentsback(new_list)
+    messagebox.showinfo("Success",
+                        "Student deleted")
+    updatethedisplay()
+
 # This is the function that adds a new student, and their information
 def addanewstudent():
     students = studentinfo()
@@ -302,42 +341,6 @@ def addanewstudent():
     updatethedisplay()
 # The code is updated with the new information over here
 
-
-
-# This is a function student information off of the program
-def deleteastudentid():
-    students = studentinfo()
-    if len(students) == 0:
-        messagebox.showinfo("Error",
-                            "No students found")
-        return
-    # This asks the user for the code of the student they'd like to delete of the system
-    code = simpledialog.askstring("Delete",
-                                  "Enter student code to delete:")
-
-    if code == None:
-        return
-    
-    new_list = []
-    found = False
-    
-    for s in students:
-        if s["code"] != code:
-            # If the code given does not match its still kept in the list
-            
-            new_list.append(s)
-        else:
-            found = True
-    
-    if not found:
-        messagebox.showinfo("Error",
-                            "Student not found")
-        return
-    # If it is then the student information is deleted and a message box displays that
-    studentsback(new_list)
-    messagebox.showinfo("Success",
-                        "Student deleted")
-    updatethedisplay()
 
 
 # This is a function to update a student record 
@@ -534,15 +537,6 @@ root.geometry("1100x800")
 # This is the name and size of the application
 
 
-
-# This is the title showen in the application
-title = tk.Label(root,
-                 text="Student Marks System",
-                 font=("Arial", 19,
-                 "bold"))
-title.pack(pady=10)
-
-
 # This is the container of the information
 container = Frame(root)
 container.pack(fill="both",
@@ -558,6 +552,14 @@ left.pack(side="left",
           fill="both",
           expand=True,
           padx=(0, 5))
+
+# This is the title showen in the application
+title = tk.Label(root,
+                 text="Student Marks System",
+                 font=("Arial", 19,
+                 "bold"))
+title.pack(pady=10)
+
 
 displaylabel = tk.Label(left,
                          text="Student Records",
@@ -581,7 +583,7 @@ displaythestudentinfo.pack(side="left", fill="both", expand=True)
 scroll.config(command=displaythestudentinfo.yview)
 
 # This is the refresh button at the bottom of the page
-refreshbutton = tk.Button(left, text="refresh display", command=updatethedisplay, width=20)
+refreshbutton = tk.Button(left, text="refresh display ↪", command=updatethedisplay, width=20, font=("Arial", 13, "bold"))
 refreshbutton.pack(pady=5)
 
 # The buttons are placed on the rightside
@@ -596,36 +598,36 @@ buttonslabel.pack(pady=10)
 # These are all the buttons;
 
 # This is the view button
-viewbutton = tk.Button(right, text="Individual Student", command=viewa_spec_student, width=25, height=2, font=("Arial", 15, "bold"))
+viewbutton = tk.Button(right, text="Individual Student 📝", command=viewa_spec_student, width=25, height=2, font=("Arial", 19, "bold"))
 viewbutton.pack(pady=5)
 
 # This is the highest mark button
-highestmark = tk.Button(right, text="Highest Mark", command=showhighestachiever, width=25, height=2, font=("Arial", 15, "bold"), bg="#4CAF50")
+highestmark = tk.Button(right, text="Highest Mark ✅", command=showhighestachiever, width=25, height=2, font=("Arial", 19, "bold"), bg="#4CAF50")
 highestmark.pack(pady=5)
 
 # This is the lowest mark button
-lowestmark = tk.Button(right, text="Lowest Mark", command=showlowestmark, width=25, height=2, font=("Arial", 15, "bold"))
+lowestmark = tk.Button(right, text="Lowest Mark ❌", command=showlowestmark, width=25, height=2, font=("Arial", 19, "bold"))
 lowestmark.pack(pady=5)
 
 # This is the sort students button
-sortstudentsbutton = tk.Button(right, text="Sort Pupils", command=sortallinfo, width=25, height=2, font=("Arial", 15, "bold"))
+sortstudentsbutton = tk.Button(right, text="Sort Pupils 📤", command=sortallinfo, width=25, height=2, font=("Arial", 19, "bold"))
 sortstudentsbutton.pack(pady=5)
 
 
 # This is the add new student button
-addthestudents = tk.Button(right, text="Add new Student", command=addanewstudent, width=25, height=2, font=("Arial", 15, "bold"))
+addthestudents = tk.Button(right, text="Add new Student 📌", command=addanewstudent, width=25, height=2, font=("Arial", 19, "bold"))
 addthestudents.pack(pady=5)
 
 # This is the update button
-updatebutton = tk.Button(right, text="Update Student Info", command=updateastudentid, width=25, height=2, font=("Arial", 15, "bold"))
+updatebutton = tk.Button(right, text="Update Student Info ➡️", command=updateastudentid, width=25, height=2, font=("Arial", 19, "bold"))
 updatebutton.pack(pady=5)
 
 # This is the delete student button
-deletebutton = tk.Button(right, text="Delete Student ID", command=deleteastudentid, width=25, height=2, font=("Arial", 15, "bold"))
+deletebutton = tk.Button(right, text="Delete 🚫", command=deleteastudentid, width=25, height=2, font=("Arial", 19, "bold"))
 deletebutton.pack(pady=5)
 
 # This is the exit button that closes the application
-exitbutton = tk.Button(right, text="Exit", command=root.quit, width=25, height=7, font=("Arial", 15, "bold"),)
+exitbutton = tk.Button(right, text="Exit 🔚", command=root.quit, width=25, height=7, font=("Arial", 25, "bold"),)
 exitbutton.pack(pady=120)
 
 # Load the students when program starts
