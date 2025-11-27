@@ -78,9 +78,9 @@ def studentinfo():
             
             # Get the marks
             try:
-                markno1 = int(parts[2])
+                mark1 = int(parts[2])
             except:
-                markno1 = 0
+                mark1 = 0
             try:
                 mark2 = int(parts[3])
             except:
@@ -95,7 +95,7 @@ def studentinfo():
                 exam = 0
             
             # This calculates the total
-            coursework = markno1 + mark2 + mark3
+            coursework = mark1 + mark2 + mark3
             # The sum of all 3 marks is the coursework result
             total = coursework + exam
             # This is the total of the coursework and exam
@@ -110,7 +110,7 @@ def studentinfo():
                 the scores and percentages of the school work."""
             student["code"] = code
             student["name"] = name
-            student["markno1"] = markno1
+            student["mark1"] = mark1
             student["mark2"] = mark2
             student["mark3"] = mark3
             student["exam"] = exam
@@ -367,8 +367,7 @@ def updateastudentid():
                             "Student not found")
         return
     # If the student code doesnt match a error box is shown to warn the user
-    field = simpledialog.askstring("Update",
-                                   "What to update? (name/mark1/mark2/mark3/exam)")
+    field = simpledialog.askstring("Update", "What Would you like to update? (name/mark1/mark2/mark3/exam)")
     if field == None:
         return
     # If the code does match then it asks the user what they would like to update from the 
@@ -407,10 +406,10 @@ def updateastudentid():
         if newexammark != None and newexammark >= 0 and newexammark <= 100:
             target["exam"] = newexammark
         else:
-            messagebox.showerror("Invalid mark")
+            messagebox.showerror("Error", "Invalid mark")
             return
     else:
-        messagebox.showerror("Invalid field")
+        messagebox.showerror("Error", "Invalid field")
         return
     
     # New information is added and message boxes are shown if the input is invalid
@@ -445,7 +444,7 @@ def sortallinfo():
     order = order.lower()
     # If its anything other an asc or desc then the input is invalid and the messagebox shows that
     if order != "asc" and order != "desc":
-        messagebox.showerror("Invalid input, Please enter 'asc' or 'desc' ")
+        messagebox.showerror("Error", "Invalid input, Please enter 'asc' or 'desc' ")
         return
     
     
@@ -513,7 +512,7 @@ def updatethedisplay():
             
             if s["grade"] in ["A"]:
                 tag = "Agrade"
-            elif s["grade"] == ["C", "B"]:
+            elif s["grade"] == ["B", "C"]:
                 tag = "Bgrade"
             else:
                 tag = "Cgrade"
